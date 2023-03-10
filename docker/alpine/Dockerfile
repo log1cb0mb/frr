@@ -33,6 +33,7 @@ RUN cd /src \
 	&& ./bootstrap.sh \
 	&& ./configure \
 		--enable-numeric-version \
+		--enable-multipath=32 \
 		--with-pkg-extra-version="_git$PKGVER" \
 	&& make dist
 
