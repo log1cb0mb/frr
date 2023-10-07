@@ -65,6 +65,13 @@ RUN apk add \
 RUN mkdir -p /var/run/frr
 RUN chown -R frr:frr /etc/frr /var/run/frr
 
+#Enable ECMP kernel config
+COPY docker/alpine/90-ecmp.conf /etc/sysctl.d/90-ecmp.conf
+# RUN sysctl -p /etc/sysctl.d/90-ecmp.conf
+# CMD sysctl net.ipv4.fib_multipath_hash_policy=1
+# CMD sysctl net.ipv6.fib_multipath_hash_policy=1
+# CMD sysctl net.ipv4.fib_multipath_use_neigh=1
+
 # Simple init manager for reaping processes and forwarding signals
 ENTRYPOINT ["/sbin/tini", "--"]
 
